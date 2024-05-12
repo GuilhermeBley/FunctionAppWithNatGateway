@@ -22,12 +22,14 @@ public static class PostgreFunction
     {
         log.LogInformation("C# HTTP trigger function processed a request.");
 
-        string sql = "SELECT * FROM Filme";
+        string sql = "SELECT * FROM public.\"Filme\";";
 
         dynamic dynamicObject;
         try
         {
-            using var connection = new NpgsqlConnection(Environment.GetEnvironmentVariable("MyConnectionString"));
+            var connectionString = Environment.GetEnvironmentVariable("MyConnectionString");
+
+            using var connection = new NpgsqlConnection(connectionString);
 
             dynamicObject = await connection.QueryAsync(sql);
         }
