@@ -22,7 +22,7 @@ public static class PostgreFunction
     {
         log.LogInformation("C# HTTP trigger function processed a request.");
 
-        string sql = "SELECT * FROM Filmes";
+        string sql = "SELECT * FROM Filme";
 
         dynamic dynamicObject;
         try
