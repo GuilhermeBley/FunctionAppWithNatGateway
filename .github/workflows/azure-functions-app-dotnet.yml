@@ -6,7 +6,7 @@ on:
 
 env:
   AZURE_FUNCTIONAPP_NAME: 'test-serverless-basic'
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'FunctionAppWithNatGateway/FunctionAppWithNatGateway.csproj'
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'FunctionAppWithNatGateway'
   DOTNET_VERSION: '6.0.x'
 
 jobs:
@@ -23,7 +23,7 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: 'Resolve Project Dependencies Using Dotnet'
-      shell: pwsh # For Linux, use bash
+      shell: bash
       run: |
         pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
         dotnet build --configuration Release --output ./output
