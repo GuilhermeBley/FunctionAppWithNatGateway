@@ -13,7 +13,7 @@ using Dapper;
 
 namespace FunctionAppWithNatGateway;
 
-public static class Function1
+public static class PostgreFunction
 {
     [FunctionName("Function1")]
     public static async Task<IActionResult> Run(
@@ -22,11 +22,11 @@ public static class Function1
     {
         log.LogInformation("C# HTTP trigger function processed a request.");
 
-        string sql = "SELECT * FROM YourTable";
+        string sql = "SELECT * FROM Filmes";
         
         using var connection = new NpgsqlConnection(Environment.GetEnvironmentVariable("MyConnectionString"));
 
-        var dynamicObject = connection.Query(sql);
+        var dynamicObject = await connection.QueryAsync(sql);
 
         return new OkObjectResult(dynamicObject);
     }
