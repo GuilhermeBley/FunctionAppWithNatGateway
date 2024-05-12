@@ -23,10 +23,19 @@ public static class PostgreFunction
         log.LogInformation("C# HTTP trigger function processed a request.");
 
         string sql = "SELECT * FROM Filmes";
-        
-        using var connection = new NpgsqlConnection(Environment.GetEnvironmentVariable("MyConnectionString"));
 
-        var dynamicObject = await connection.QueryAsync(sql);
+        dynamic dynamicObject;
+        try
+        {
+            using var connection = new NpgsqlConnection(Environment.GetEnvironmentVariable("MyConnectionString"));
+
+            dynamicObject = await connection.QueryAsync(sql);
+        }
+        catch (Exception e)
+        {
+            log.LogError(e, "Failed to do the SQL Command.");
+            throw;
+        }
 
         return new OkObjectResult(dynamicObject);
     }
