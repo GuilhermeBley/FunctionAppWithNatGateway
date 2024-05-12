@@ -6,7 +6,7 @@ on:
 
 env:
   AZURE_FUNCTIONAPP_NAME: 'test-serverless-basic'
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'FunctionAppWithNatGateway\FunctionAppWithNatGateway.csproj'
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'FunctionAppWithNatGateway/FunctionAppWithNatGateway.csproj'
   DOTNET_VERSION: '6.0.x'
 
 jobs:
